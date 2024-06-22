@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+
+<body>
+
+    <div style="margin-top: 90px;font-family: 'Poppins'; text-align: center;">
+        <h1>Presupuesto - Vigilancia Tecnológica</h1><br /><br />
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <canvas id="presupuestoInvestigacion" style="height: 500px "></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script>
+        const second = document.getElementById('presupuestoInvestigacion');
+
+        new Chart(second, {
+            type: 'pie',
+            data: {
+                labels: ['Presupuesto Restante', 'Gastos'],
+                datasets: [{
+                    data: [960.60, 1559.40],
+                    backgroundColor: [
+                        'rgba(0, 59, 163)',
+                        'rgba(74, 140, 255)'
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                aspectRatio: 1,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Presupuesto Total: $2,520.00',
+                        font: {
+                            size: 16,
+                            weight: 'bold',
+                        },
+                        padding: {
+                            top: 10,
+                            bottom: 30
+                        },
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                var label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += '$' + context.parsed.toFixed(2);
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    datalabels: {
+                        formatter: function (value, ctx) {
+                            return '$' + value.toFixed(2);
+                        },
+                        color: '#fff'
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

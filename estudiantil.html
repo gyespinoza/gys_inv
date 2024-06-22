@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+    
+    <div style="margin-top: 90px;font-family: 'Poppins'; text-align: center;">
+        <h1>Investigación Estudiantil</h1><br /><br />
+        <div class="row">            
+            <div class="col-12 d-flex justify-content-center align-items-center" style="height: 600px;">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>   
+    <script>
+        const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Análisis de requerimientos', 'Programación de módulos', 'Adaptación de template', 'Corrección de errores', 'Implementación'],
+        datasets: [{        
+        data: [100, 100, 100,100,100],
+        label: '',
+        backgroundColor: [
+            'rgba(74, 140, 255)'
+          ],
+        
+      }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Actividades',
+                font: {
+                  size: 16,
+                  weight: 'bold',
+                 },
+                padding: {
+                  top: 10,
+                  bottom: 30
+                },
+              }
+        },
+      scales: {
+        yAxes: {
+          beginAtZero: true,
+          ticks: {
+            min: 0,
+            max: 100,
+            callback: function(value){return value+ "%"}
+          }
+        },
+      }
+    }
+  });
+        </script>
+</body>
+</html>
